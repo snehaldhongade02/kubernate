@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: rs
+  labels:
+    app: my-app
+    #tier: frontent
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: my-app
+      tier: frontend
+  template: 
+    metadata:
+      name: my-pod 
+      labels:
+        app: my-app
+        tier: frontend
+    spec: 
+      containers:
+      - name: nginx
+        image: nginx
+        ports:
+        - containerPort: 80
